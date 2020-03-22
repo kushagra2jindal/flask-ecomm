@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+   <body>
+      
+      <h2>Welcome To The Store</h2>
+
+      </br></br>
+
+      {% if username != "" %}
+
+         <p>Welcome back {{ username }}</p>
+         <a href="/logoutPage"> Logout </a>
+
+      {% else %}
+
+         <a href="/loginPage"> Login Here </a>
+
+      {% endif %}
+      
+      <form action = "/placeOrder" method="POST">
+
+         <table border = 1>
+            <thead>
+               <td>ID</td>
+               <td>NAME</td>
+               <td>Quantity</td>
+               <td>Price</td>
+               <td>BUY</td>
+            </thead>
+         
+            {% for row in rows %}
+            
+               <tr>
+                  <td>{{row["id"]}}</td>
+                  <td>{{row["name"]}}</td>
+                  <td> {{ row["quantity"]}}</td>
+                  <td>{{row["price"]}}</td>	
+                  <td><input type="submit" value="Buy"/></td>
+               </tr>
+
+            {% endfor %}
+         </table>
+
+      </form>
+
+      
+   </body>
+</html>
