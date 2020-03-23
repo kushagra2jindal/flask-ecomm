@@ -28,7 +28,9 @@
             </thead>
          
             {% for row in rows %}
-            
+
+               {% if row["quantity"] > 0 %}
+
                <tr>
                   <td>{{row["id"]}}</td>
                   <td>{{row["name"]}}</td>
@@ -36,8 +38,14 @@
                   <td>{{row["price"]}}</td>
                   <td><a href = "/placeOrder?itemId={{row[0]}}"> press here to buy</a></td>
                </tr>
+   
+               {% endif %}
+
+
+                  
 
             {% endfor %}
+
          </table>
 
 
