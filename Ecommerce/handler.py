@@ -131,25 +131,30 @@ def placeOrder():
          #print (type(itemId))
 
          if(id == itemId):
-            print ("founded")
+            #print ("founded")
             amount = row['price']
             quantity = row['quantity'] - 1
             cur.execute("update item_ecom set quantity=? where id=?",(quantity,row['id']))
             conn.commit()
             break
 
-      cur.execute("select * from item_ecom")
-    
+      cur.execute("select * from order_ecom")
       rows = cur.fetchall()
-      amount = 0
-
+      order = 0
       for row in rows:
-         print(row['quantity'])
+         order = row['id']
+         print (order)
 
+      order = order + 1
+
+      cur.execute("INSERT INTO order_ecom (id,username,quantity,amount) VALUES (?,?,?,?)",(order,session['username'],quantity,amount))
+      conn.row_factory = sqlite3.Row
+      conn.commit()
 
       conn.close
 
-      order = 10
+      
+      #print (order)
       return render_template("orderPage.html", order = order, amount = amount)
 
    else:
