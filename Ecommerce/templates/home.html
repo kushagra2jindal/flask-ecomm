@@ -17,7 +17,6 @@
 
       {% endif %}
       
-      <form action = "/placeOrder" method="POST">
 
          <table border = 1>
             <thead>
@@ -34,14 +33,13 @@
                   <td>{{row["id"]}}</td>
                   <td>{{row["name"]}}</td>
                   <td> {{ row["quantity"]}}</td>
-                  <td>{{row["price"]}}</td>	
-                  <td><input type="submit" value="Buy"/></td>
+                  <td>{{row["price"]}}</td>
+                  <td><a href = "/placeOrder?itemId={{row[0]}}"> press here to buy</a></td>
                </tr>
 
             {% endfor %}
          </table>
 
-      </form>
 
       
    </body>

@@ -106,12 +106,52 @@ def loginOrderLoad():
    return render_template("orderPage.html")
 
 
-@app.route('/placeOrder', methods = ['POST'])
+@app.route('/placeOrder')
 def placeOrder():
    #print("buy button pressed")
    if 'username' in session:
+      itemId = request.args.get('itemId')
+      #print (itemId)
+      conn = sqlite3.connect('database.db')
+      #print ("Opened database successfully")
+      conn.row_factory = sqlite3.Row
+   
+      cur = conn.cursor()
+      cur.execute("select * from item_ecom")
+    
+      rows = cur.fetchall()
+      amount = 0
+
+      for row in rows:
+         id = row['id']
+         itemId = int(itemId)
+         #print (id)
+         #print (itemId)
+         #print (type(id))
+         #print (type(itemId))
+
+         if(id == itemId):
+            print ("founded")
+            amount = row['price']
+            quantity = row['quantity'] - 1
+            cur.execute("update item_ecom set quantity=? where id=?",(quantity,row['id']))
+            conn.commit()
+            break
+
+      cur.execute("select * from item_ecom")
+    
+      rows = cur.fetchall()
+      amount = 0
+
+      for row in rows:
+         print(row['quantity'])
+
+
+      conn.close
+
       order = 10
-      return render_template("orderPage.html", order = order)
+      return render_template("orderPage.html", order = order, amount = amount)
+
    else:
       return render_template("loginPage.html")
 
