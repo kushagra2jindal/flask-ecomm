@@ -10,6 +10,8 @@
 
          <p>Welcome back {{ username }}</p>
          <a href="/logoutPage"> Logout </a>
+         </br>
+         <a href="/showCart">Show Cart</a>
 
       {% else %}
 
@@ -36,7 +38,7 @@
                   <td>{{row["name"]}}</td>
                   <td> {{ row["quantity"]}}</td>
                   <td>{{row["price"]}}</td>
-                  <td><a href = "/placeOrder?itemId={{row[0]}}"> press here to buy</a></td>
+                  <td><a href = "/addToCart?itemId={{row[0]}}"> add to CArt</a></td>
                </tr>
    
                {% endif %}
@@ -47,8 +49,6 @@
             {% endfor %}
 
          </table>
-
-
       
    </body>
 </html>

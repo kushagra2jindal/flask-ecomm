@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+   <body>
+      
+      <h2>Welcome To The Cart {{ username }} </h2>
+
+
+      </br>
+
+      <a href = "/">Go to home</a>
+
+
+
+      </br></br>
+      
+      {% if count > 0 %}
+
+      <table border = 1>
+         
+         <thead>
+            <td>NAME</td>
+            <td>Quantity</td>
+            <td>Price</td>
+         </thead>
+
+
+         {% for row in rows %}
+
+            {% if row["username"] == username %}
+               
+               <tr>
+                  <td>{{row["name"]}}</td>
+                  <td> {{row["quantity"]}}</td>
+                  <td>{{row["price"]}}</td>
+               </tr>   
+               
+            {% endif %}
+
+         {% endfor %}
+
+      </table>
+
+      
+      
+         <a href = /placeOrder>Buy aLL</a>
+
+      {% else %}
+
+         <h2>Your cart is empty</h2>
+      
+      {% endif %}
+
+      
+
+   </body>
+</html>

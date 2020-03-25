@@ -9,6 +9,7 @@ def deleteTables(conn):
         conn.execute('drop table item_ecom')
         conn.execute('drop table Order_ecom')
         conn.execute('drop table customer_ecom')
+        conn.execute('drop table cart_ecom')
         print ("tables are dropped")
     except:
         print("all tables are not able to dropped")
@@ -34,6 +35,12 @@ def createTables(conn):
     except:
         print ("customer table already exists")
 
+    try:
+        conn.execute('CREATE TABLE cart_ecom (username TEXT, id INT, name TEXT, quantity INT, price INT)')
+        print ("cart Table created successfully")
+    except:
+        print ("cart table already exists")
+
 
 def insertData(conn):
     # inserting dummy data in the tables.
@@ -50,6 +57,8 @@ def insertData(conn):
     # inserting dummy data in customer table        
     cur.execute("INSERT INTO customer_ecom (username,pass,name,email,phno,address) VALUES (?,?,?,?,?,?)",("kushagra2jindal","1234","kushagra","kushagra2jindal@gmail.com",1234567890,"park road,dehradun") )
     print ("dummy data inserted in customer table")
+
+
 
 
 def showData(conn):
